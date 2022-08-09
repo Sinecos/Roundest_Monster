@@ -1,6 +1,8 @@
 import { getOptionsForVote } from "@/utils/getRandomPokemon";
 import { trpc } from "@/utils/trpc";
 
+//https://www.youtube.com/watch?v=PKy2lYEnhgs&t=474s
+
 export default function Home(){
 
   const [first, second] = getOptionsForVote();
