@@ -1,11 +1,16 @@
 import { getOptionsForVote } from "@/utils/getRandomPokemon";
 import { trpc } from "@/utils/trpc";
+import { useMemo } from "react";
 
-//https://www.youtube.com/watch?v=PKy2lYEnhgs&t=474s
+//https://youtu.be/PKy2lYEnhgs?t=2330
 
 export default function Home(){
 
-  const [first, second] = getOptionsForVote();
+  const [first, second] = useMemo(() => getOptionsForVote(), []);
+
+  const firstPokemon = trpc.useQuery(["get-pokemon-by-id", {id: first}]);
+  console.log(firstPokemon.data);
+
 
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center">
