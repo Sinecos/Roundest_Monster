@@ -1,0 +1,28 @@
+Backend is server:
+
+trpc is the used server router
+
+export const appRouter = trpc
+  .router().query("get-pokemon-by-id", {
+    input: z.object( { id: z.number()}),
+    async resolve({input}) {
+      const api = new PokemonClient();
+
+      const pokemon = await api.getPokemonById(input.id);
+      return pokemon; 
+    }
+  });
+
+we are quarying own named get-pokemon-by-id to get a id number from frontend getQuary
+
+const [first, second] = useMemo(() => getOptionsForVote(), []);
+
+const firstPokemon = trpc.useQuery(["get-pokemon-by-id", {id: first}]);
+
+{id: first} is input which is added to input: z.object( { id: z.number()}
+
+using it is input.id
+
+useMemo is an react hook which returns memoized value. It catch a value witouth need to 
+recalculated agein.
+
