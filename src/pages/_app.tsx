@@ -1,19 +1,17 @@
-import "tailwindcss/tailwind.css"
-import '../styles/global.css'
+import "tailwindcss/tailwind.css";
+import "../styles/global.css";
 import type { AppProps } from "next/app";
 
-
-
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 
 import { withTRPC } from "@trpc/next";
 import type { AppRouter } from "@/backend/router";
 
 function getBaseUrl() {
-  if (typeof window !== 'undefined') {
-    return '';
+  if (typeof window !== "undefined") {
+    return "";
   }
   // reference for vercel.com
   if (process.env.VERCEL_URL) {
@@ -46,5 +44,5 @@ export default withTRPC<AppRouter>({
   /**
    * @link https://trpc.io/docs/ssr
    */
-  ssr: true,
+  ssr: false,
 })(MyApp);
