@@ -2,7 +2,7 @@ import { getOptionsForVote } from "@/utils/getRandomPokemon";
 import { trpc } from "@/utils/trpc";
 import { useState } from "react";
 
-//https://youtu.be/PKy2lYEnhgs?t=2330
+//https://youtu.be/PKy2lYEnhgs?t=3024
 
 export default function Home() {
   const [ids, updateIds] = useState(() => getOptionsForVote());
@@ -13,6 +13,12 @@ export default function Home() {
   const secondPokemon = trpc.useQuery(["get-pokemon-by-id", { id: second }]);
 
   if (firstPokemon.isLoading || secondPokemon.isLoading) return null;
+
+  const voteForRoundest = (selected: number) => {
+    //todo: fire mutation to persist changes
+
+    updateIds(getOptionsForVote());
+  };
 
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center">
